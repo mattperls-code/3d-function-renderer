@@ -1,0 +1,1 @@
+reset && rm -rf "test" && make && ./test
