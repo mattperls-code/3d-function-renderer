@@ -59,7 +59,7 @@ class CameraTransform
         int width;
         int height;
 
-        CameraTransform() : CameraTransform(Vec3(0, 30, -60), -30 * M_PI / 180, 0, M_PI_2, 400, 400){};
+        CameraTransform() : CameraTransform(Vec3(0, 30, -60), -30 * M_PI / 180, 0, M_PI_2, 800, 600){};
         CameraTransform(Vec3 camPos, float rotX, float rotY, float fov, float width, float height)
         {
             this->camPos = camPos;
@@ -174,7 +174,7 @@ class FunctionSpace
         int maxY;
         int maxZ;
 
-        FunctionSpace() : FunctionSpace(-10, -20, -10, 10, 20, 10){};
+        FunctionSpace() : FunctionSpace(-15, -10, -15, 15, 10, 15){};
         FunctionSpace(int minX, int minY, int minZ, int maxX, int maxY, int maxZ)
         {
             this->minX = minX;
@@ -206,9 +206,9 @@ class Function
         std::vector<Vec4> generateSolutionSpace(const FunctionSpace& bounds)
         {
             std::vector<Vec4> solutions;
-            for(float x = bounds.minX;x<=bounds.maxX;x+=0.05)
+            for(float x = bounds.minX;x<=bounds.maxX;x+=0.015)
             {
-                for(float z = bounds.minZ;z<=bounds.maxZ;z+=0.05)
+                for(float z = bounds.minZ;z<=bounds.maxZ;z+=0.015)
                 {
                     float y = this->evaluate(x, z);
                     if(y >= bounds.minY && y <= bounds.maxY){
@@ -378,7 +378,7 @@ int main()
 {
     FunctionSpace bounds = FunctionSpace();
     Function function = Function([](float x, float z) -> float {
-        return z * sinf(100 * x * M_PI / 180) + x * sinf(100 * z * M_PI / 180);
+        return 5 * sinf(30 * (z * x - z) * M_PI / 180) - 5 * cosf(60 * (x / z - x) * M_PI / 180);
     });
 
     Modeler modeler = Modeler(bounds, function);
