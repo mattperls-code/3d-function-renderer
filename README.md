@@ -1,4 +1,4 @@
-# C++ 3D Function Renderer
+# 3D Function Renderer
 
 ![Example 1](./examples/example1.png)
 ![Example 2](./examples/example2.png)
